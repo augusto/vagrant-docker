@@ -21,6 +21,8 @@ usermod -aG docker vagrant
 
 ## Enable user namespace
 cp /vagrant/files/docker.conf /etc/systemd/system/docker.service.d/override.conf
+sed -i 's/vagrant.*/vagrant:1000:65536/' /etc/subuid
+sed -i 's/vagrant.*/vagrant:1000:65536/' /etc/subgid
 systemctl enable docker
 systemctl restart docker
 
